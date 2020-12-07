@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button id="btn">JSONP跨域请求</button>
+    <ul id="ul"></ul>
+    <script src="../js/jquery.min.js"></script>
+    <script>
+        var js = '';
+        function fn(data){  //必须要和js.src连接中的callBack=fn的fn名字一致
+            console.log(data);
+            var html = "";
+            data.forEach(function(item){
+                html += '<li>'+ item +'</li>'
+            });
+            $('#ul').html(html);
+            $('#js').remove();//删除创建的script标签
+        }
+        $('#btn').click(function(){
+            // 动态创建script标签
+            js = document.createElement('script');
+            js.id = "js";
+            js.src = "http://localhost:3000?callback=fn";   // 这是是要请求的
+            $('body').append(js);
+        })
+    </script>
+</body>
+</html>
