@@ -5,8 +5,23 @@
 
 // 求第n个斐波那契数
 
+function fib2(n){
+    if(n==0) return 0;
+    if(n<=2) return 1;
+    var f2 = 1;
+    var f1 = 1;
+    for(let i = 3;i < n; i++){
+        f2 = f2 + f1;
+        f1 = f2 - f1;
+    }
+    return f2;
+}
+
+
+
 // 第一种解法： 递归
 console.time()
+// 时间复杂度 为O(2^n)
 function fibonacci(n){
     if(n<=1) return n;
     return fibonacci(n-1) + fibonacci(n-2)
@@ -23,6 +38,7 @@ console.timeEnd()
 
 // 
 console.time()
+// 时间复杂度 O(n)
 function fibonacci1(n){
     if(n<=1) return n;
     let f1 = 1;
@@ -41,6 +57,16 @@ function fibonacci1(n){
         
     }
     return f2;
+}
+
+function fib(n){
+    if(n<=1) return n;
+    let f1 = 0;
+    let f2 = 1;
+    for(let i = 0; i < n - 1; i++){
+        f2 = f1 + f2;
+        f1 = f2 - f1;
+    }
 }
 
 // console.log(fibonacci1(1))
